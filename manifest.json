@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "视频状态栏",
+  "version": "2.3",
+  "description": "在视频的右上角显示时间和音量等信息，并且可以调节",
+  "author": "lwjlwjlwjlwj",
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ],
+  "icons": {
+    "48": "icon.png"
+  }
+}
