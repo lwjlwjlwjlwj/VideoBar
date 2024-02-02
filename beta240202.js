@@ -388,7 +388,7 @@ function updateSpeed() {
         speedSpan.textContent = `倍速: ${currentSpeed}x`;
     }
 
-    update(); // 更新
+    update(); // 更新倍速
 }
 
 // 添加新应用
