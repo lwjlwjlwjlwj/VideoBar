@@ -268,9 +268,9 @@ function initialization() {
     applyStyles(volumeIndicator, styles.volumeIndicator);
 
     // 为音量条添加事件监听器
-    volumeBar.addEventListener("mousemove", handleMouseMove);
-    volumeBar.addEventListener("click", handleClick);
-    volumeBar.addEventListener("mouseleave", handleMouseLeave);
+    volumeBar.addEventListener("mousemove", volumeBarMouseMove);
+    volumeBar.addEventListener("click", volumeBarClick);
+    volumeBar.addEventListener("mouseleave", volumeBarMouseLeave);
 
     // 为speedSpan绑定点击事件
     addNewApp('speedSpan', 'speed');
@@ -341,7 +341,7 @@ function updateVolume() {
     if(!onvolumeBar) update(); // 更新声音
 }
 
-function handleMouseMove(event) {
+function volumeBarMouseMove(event) {
     const volumeSpan = document.getElementById('volumeSpan');
     const volumeBar = document.getElementById('volumeBar');
     const volumeIndicator = document.getElementById('volumeIndicator');
@@ -371,12 +371,12 @@ function handleMouseMove(event) {
 }
 
 // 鼠标点击音量条时的事件处理函数
-function handleClick(event) {
+function volumeBarClick(event) {
     videoElement.volume = percentageBar;
 }
 
 // 鼠标离开音量条时的事件处理函数
-function handleMouseLeave() {
+function volumeBarMouseLeave() {
     onvolumeBar = false;
 }
 
