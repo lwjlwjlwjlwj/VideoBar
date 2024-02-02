@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Controls</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        #containerDiv {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            z-index: 999999999;
+        }
+
+        #audioDiv {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            margin-right: 10px;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        #speedSpan,
+        #volumeSpan {
+            cursor: pointer;
+        }
+
+        #volumeBar {
+            width: 70px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: relative;
+            cursor: pointer;
+            margin-left: 5px;
+            display: inline-block;
+            padding: 0px 3px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        #volumeIndicator {
+            height: 100%;
+            background-color: white;
+            position: absolute;
+            display: flex;
+            top: 0;
+            left: 0;
+        }
+
+        #timeDiv {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="containerDiv">
+        <div id="audioDiv">
+            <span id="speedSpan">倍速: 1x</span>
+            <button id="increaseSpeedButton" style="display: none;"> + </button>
+            <button id="decreaseSpeedButton" style="display: none;"> - </button>
+            <button id="resetSpeedButton" style="display: none;">重置</button>
+            <span id="volumeSpan" style="margin-left: 10px;">声音: 100%</span>
+            <span id="volumeBar">
+                <span id="volumeIndicator"></span>
+            </span>
+            <button id="increaseVolumeButton" style="display: none;"> + </button>
+            <button id="decreaseVolumeButton" style="display: none;"> - </button>
+        </div>
+        <div id="timeDiv">12:34</div>
+    </div>
+</body>
+</html>
