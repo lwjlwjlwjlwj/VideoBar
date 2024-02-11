@@ -386,10 +386,10 @@ function updateVolume() {
         volumeIndicator.style.width = `${percentageVolume}%`;// 更新白条宽度
         // 更新音量显示
         if (0 != currentVolume) {
-            volumeSpan.textContent = `声音: ${percentageVolume}%`;
+            volumeSpan.textContent = `声音:${percentageVolume}%`;
         }
         else {
-            volumeSpan.textContent = `声音: 静音`;
+            volumeSpan.textContent = `声音:静音`;
         }
 
     }
@@ -419,10 +419,10 @@ function volumeBarMouseMove(event) {
     const percentageInt = Math.floor(percentageBar * 100);
     volumeIndicator.style.width = `${percentageBar * 100}%`;
     if (0 != percentageInt) {
-        volumeSpan.textContent = `声音: ${percentageInt}%`;
+        volumeSpan.textContent = `声音:${percentageInt}%`;
     }
     else {
-        volumeSpan.textContent = `声音: 静音`;
+        volumeSpan.textContent = `声音:静音`;
     }
 }
 

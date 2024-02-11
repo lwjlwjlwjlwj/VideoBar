@@ -213,16 +213,18 @@ function findVideoElement() {
 function onMouseMove() {
     clearTimeout(timeout);
 
-    const volumeBar = containerDiv.querySelector('#volumeBar');
-    audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    volumeBar.style.display = "inline-block";
+    if (!onBar) {
+        const volumeBar = containerDiv.querySelector('#volumeBar');
+        audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        volumeBar.style.display = "inline-block";
 
-    timeout = setTimeout(() => {
-        audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        volumeBar.style.display = "none";
-    }, 5000);
+        timeout = setTimeout(() => {
+            audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
+            timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
+            volumeBar.style.display = "none";
+        }, 5000);
+    }
 }
 
 // 创建按钮
@@ -385,10 +387,10 @@ function updateVolume() {
         volumeIndicator.style.width = `${percentageVolume}%`;// 更新白条宽度
         // 更新音量显示
         if (0 != currentVolume) {
-            volumeSpan.textContent = `声音: ${percentageVolume}%`;
+            volumeSpan.textContent = `声音:${percentageVolume}%`;
         }
         else {
-            volumeSpan.textContent = `声音: 静音`;
+            volumeSpan.textContent = `声音:静音`;
         }
 
     }
@@ -418,10 +420,10 @@ function volumeBarMouseMove(event) {
     const percentageInt = Math.floor(percentageBar * 100);
     volumeIndicator.style.width = `${percentageBar * 100}%`;
     if (0 != percentageInt) {
-        volumeSpan.textContent = `声音: ${percentageInt}%`;
+        volumeSpan.textContent = `声音:${percentageInt}%`;
     }
     else {
-        volumeSpan.textContent = `声音: 静音`;
+        volumeSpan.textContent = `声音:静音`;
     }
 }
 
@@ -446,12 +448,12 @@ function updateSpeed() {
     update(); // 更新倍速
 }
 
-function isOnBar(event){
+function isOnBar(event) {
     onBar = true;
     //console.log(onBar);
 }
 
-function noOnbar(event){
+function noOnbar(event) {
     onBar = false;
     //console.log(onBar);
 }
