@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         beta240203
+// @name         beta240211
 // @namespace    http://tampermonkey.net/
 // @version      3.0
 // @description  在视频的右上角显示时间和音量等信息，并且可以调节
@@ -13,6 +13,7 @@
 var videoElement;
 let containerDiv, statusBarDiv, audioDiv, timeDiv, appDiv, tipDiv;
 let timeout;// 鼠标全局监听事件
+let onBar = false;
 const timePrintType = 2;// 时间输出格式
 let onvolumeBar = false, percentageBar = 0;// 白条使用的全局属性
 var hoverTimeout;// 悬浮倍速的全局属性
@@ -212,18 +213,16 @@ function findVideoElement() {
 function onMouseMove() {
     clearTimeout(timeout);
 
-    if (!onBar) {
-        const volumeBar = containerDiv.querySelector('#volumeBar');
-        audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-        timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-        volumeBar.style.display = "inline-block";
+    const volumeBar = containerDiv.querySelector('#volumeBar');
+    audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    volumeBar.style.display = "inline-block";
 
-        timeout = setTimeout(() => {
-            audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
-            timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
-            volumeBar.style.display = "none";
-        }, 5000);
-    }
+    timeout = setTimeout(() => {
+        audioDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        timeDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        volumeBar.style.display = "none";
+    }, 5000);
 }
 
 // 创建按钮
@@ -441,10 +440,20 @@ function updateSpeed() {
 
     function update() {
         const currentSpeed = videoElement.playbackRate;
-        speedSpan.textContent = `倍速: ${currentSpeed.toFixed(2)}x`;
+        speedSpan.textContent = `倍速: ${currentSpeed}x`;
     }
 
     update(); // 更新倍速
+}
+
+function isOnBar(event){
+    onBar = true;
+    //console.log(onBar);
+}
+
+function noOnbar(event){
+    onBar = false;
+    //console.log(onBar);
 }
 
 function replaceElementWithClone(element) {
@@ -567,6 +576,8 @@ function bindSpeedAppControlEvents() {
 
     // 监听鼠标静止状态
     document.addEventListener("mousemove", onMouseMove);
+    containerDiv.addEventListener("mousemove", isOnBar);
+    containerDiv.addEventListener("mouseleave", noOnbar);
 
     // 监听全屏状态变化事件
     document.addEventListener("fullscreenchange", handleFullscreenChange);

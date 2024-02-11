@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         视频状态栏
 // @namespace    http://tampermonkey.net/
-// @version      2.5beta
+// @version      2.5
 // @description  在视频的右上角显示时间和音量等信息，并且可以调节
 // @author       lwjlwjlwjlwj
 // @match        *://*/*
@@ -15,7 +15,7 @@
     let timeout;
     let showButtons = false;
     let showButtons2 = false;
-    let onlytime = true;
+    let onlytime = false;
     let colorflag = 0;
     let videoElement;
     let pomodoroFunction = false;//番茄钟功能开关
@@ -578,12 +578,12 @@
 
     function isOnBar(event){
         onBar = true;
-        console.log(onBar);
+        //console.log(onBar);
     }
 
     function noOnbar(event){
         onBar = false;
-        console.log(onBar);
+        //console.log(onBar);
     }
 
     // 监听全屏状态变化，将容器div添加到全屏层中
